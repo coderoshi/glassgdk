@@ -1,20 +1,20 @@
-package glass.stats;
+package glass.camera;
 
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.widget.RemoteViews;
 
 import com.google.android.glass.timeline.LiveCard;
 import com.google.android.glass.timeline.LiveCard.PublishMode;
 import com.google.android.glass.timeline.TimelineManager;
 
-public class StatsService extends Service {
-	public final static String TAG = StatsService.class.getName();
+public class CameraService extends Service {
+	public final static String TAG = CameraService.class.getName();
 
 	private TimelineManager timelineManager;
 	private LiveCard liveCard;
+	private CameraDrawer cameraDrawer;
 
 	@Override
 	public void onCreate() {
@@ -26,7 +26,9 @@ public class StatsService extends Service {
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		if( liveCard == null ) {
 		    liveCard = timelineManager.createLiveCard(TAG);
-		    liveCard.setViews( buildViews() );
+//		    liveCard.setViews( buildViews() );
+		    cameraDrawer = new CameraDrawer();
+		    liveCard.setDirectRenderingEnabled(true).getSurfaceHolder().addCallback(cameraDrawer);
 		    liveCard.setAction( buildAction() );
 	        liveCard.publish(PublishMode.REVEAL);
 		}
@@ -43,11 +45,11 @@ public class StatsService extends Service {
         super.onDestroy();
     }
 
-	private RemoteViews buildViews() {
-		RemoteViews rv = new RemoteViews(this.getPackageName(), R.layout.stats);
-	    rv.setTextViewText(R.id.is_charging, "Charging");
-	    return rv;
-	}
+//	private RemoteViews buildViews() {
+//		RemoteViews rv = new RemoteViews(this.getPackageName(), R.layout.stats);
+//	    rv.setTextViewText(R.id.is_charging, "Charging");
+//	    return rv;
+//	}
 
 	private PendingIntent buildAction() {
 		Intent menuIntent = new Intent(this, MenuActivity.class);
