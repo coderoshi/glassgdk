@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">QRCamera</string>
+    <string name="stop">Stop</string>
+    <string name="qr_code">QR Code</string>
+    <string name="voice_trigger">get QR code</string>
+</resources>
