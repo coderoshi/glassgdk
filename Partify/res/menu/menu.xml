@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:id="@+id/take_picture"
+        android:title="@string/take_picture" />
+    <item
+        android:id="@+id/balloon_count"
+        android:title="@string/balloon_count" />
+    <item
+        android:id="@+id/stop"
+        android:title="@string/stop"
+        android:icon="@drawable/ic_stop" />
+</menu>

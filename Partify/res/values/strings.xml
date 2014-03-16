@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Partify</string>
+    <string name="balloon_count">Pick Balloon Count</string>
+    <string name="take_picture">Take a Picture</string>
+    <string name="stop">Stop</string>
+    <!-- <string name="thumbnail">Thumbnail</string> -->
+    <string name="voice_trigger">start a party</string>
+</resources>
