@@ -31,6 +31,7 @@ public class BalloonCountActivity
         scrollView = new BalloonCountScrollView(this, gestureDetector);
         adapter = new BalloonCountScrollAdapter(this);
         scrollView.setAdapter(adapter);
+        // scrollView.setOnItemClickListener();
         setContentView(scrollView);
     }
 

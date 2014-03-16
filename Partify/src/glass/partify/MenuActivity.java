@@ -20,19 +20,19 @@ import com.google.android.glass.media.CameraManager;
 
 public class MenuActivity extends Activity {
 
-	public static final String TAG = GifferService.TAG;
+	public static final String TAG = PartyService.TAG;
     private static final int BALLOON_COUNT = 100;
     private static final int TAKE_PICTURE = 101;
 
     private FileObserver observer;
     private boolean takingPhoto;
     private boolean settingBalloonCount;
-    private GifferService service;
+    private PartyService service;
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder binder) {
-            if (binder instanceof GifferService.GifferBinder) {
-            	service = ((GifferService.GifferBinder) binder).getService();
+            if (binder instanceof PartyService.GifferBinder) {
+            	service = ((PartyService.GifferBinder) binder).getService();
                 openOptionsMenu();
             }
             // No need to keep the service bound.
@@ -46,7 +46,7 @@ public class MenuActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        bindService(new Intent(this, GifferService.class), serviceConnection, 0);
+        bindService(new Intent(this, PartyService.class), serviceConnection, 0);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class MenuActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.stop:
-            	stopService(new Intent(this, GifferService.class));
+            	stopService(new Intent(this, PartyService.class));
                 return true;
             case R.id.take_picture:
             	Intent captureImageIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -111,7 +111,7 @@ public class MenuActivity extends Activity {
             observer = new FileObserver(pictureFile.getParentFile().getAbsolutePath()) {
                 @Override
                 public void onEvent(int event, String file) {
-                	Log.d(TAG, "File "+event +" [" + file + "] " + pictureFileName);
+                	Log.d(TAG, "File " + file + " event " + event);
                     if(event == FileObserver.CLOSE_WRITE && file.equals(pictureFileName)) {
                     	Log.d(TAG, "Image file written " + file);
                     	service.setImageFileName(pictureFile.getAbsolutePath());

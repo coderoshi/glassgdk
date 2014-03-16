@@ -13,8 +13,8 @@ import android.view.SurfaceHolder;
 
 import com.google.android.glass.timeline.DirectRenderingCallback;
 
-public class GifferDrawer implements DirectRenderingCallback {
-	private static final String TAG = GifferService.TAG;
+public class PartyDrawer implements DirectRenderingCallback {
+	private static final String TAG = PartyService.TAG;
 	private static final int FPS = 24;
 
 	private Service service;
@@ -93,7 +93,7 @@ public class GifferDrawer implements DirectRenderingCallback {
 		isPlaying = true;
     }
     
-	public GifferDrawer(Service service)
+	public PartyDrawer(Service service)
 		throws IOException
 	{
 		this.service = service;

@@ -15,12 +15,12 @@ import com.google.android.glass.timeline.LiveCard;
 import com.google.android.glass.timeline.LiveCard.PublishMode;
 import com.google.android.glass.timeline.TimelineManager;
 
-public class GifferService extends Service {
-	public final static String TAG = GifferService.class.getPackage().toString();
+public class PartyService extends Service {
+	public final static String TAG = PartyService.class.getPackage().toString();
 
 	private TimelineManager timelineManager;
 	private LiveCard liveCard;
-	private GifferDrawer drawer;
+	private PartyDrawer drawer;
     private final GifferBinder binder = new GifferBinder();
     private int balloonCount = Balloon.DEFAULT_COUNT;
 
@@ -28,8 +28,8 @@ public class GifferService extends Service {
      * Binder giving access to this service.
      */
     public class GifferBinder extends Binder {
-        public GifferService getService() {
-            return GifferService.this;
+        public PartyService getService() {
+            return PartyService.this;
         }
     }
 
@@ -72,7 +72,7 @@ public class GifferService extends Service {
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		if (liveCard == null) {
 			try {
-				drawer = new GifferDrawer(this);
+				drawer = new PartyDrawer(this);
 			} catch(IOException e) {
 				throw new RuntimeException(e);
 			}

@@ -15,7 +15,7 @@ public class BalloonCountScrollView extends CardScrollView {
 	}
 
     @Override
-    public final boolean dispatchGenericFocusedEvent(MotionEvent event) {
+    public boolean dispatchGenericFocusedEvent(MotionEvent event) {
         if (gestureDetector.onMotionEvent(event)) {
             return true;
         }
